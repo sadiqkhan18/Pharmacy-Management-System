@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard Overview{% endblock %}
+{% block content %}
+<div class="row g-4 mb-4">
+    <div class="col-md-3"><div class="stat-card"><i class="fas fa-capsules fa-3x text-primary"></i><h3>{{ total_medicines }}</h3><p>Total Medicines</p></div></div>
+    <div class="col-md-3"><div class="stat-card"><i class="fas fa-exclamation-triangle fa-3x text-warning"></i><h3 class="text-warning">{{ low_stock }}</h3><p>Low Stock Items</p></div></div>
+    <div class="col-md-3"><div class="stat-card"><i class="fas fa-calendar-times fa-3x text-danger"></i><h3 class="text-danger">{{ expiring_soon }}</h3><p>Expiring Soon (30d)</p></div></div>
+    <div class="col-md-3"><div class="stat-card"><i class="fas fa-rupee-sign fa-3x text-success"></i><h3>₹{{ "%.2f"|format(total_sales_today) }}</h3><p>Today's Sales</p></div></div>
+</div>
+<div class="row">
+    <div class="col-md-12"><div class="card"><div class="card-header">Recent Sales</div><div class="card-body"><table class="table"><thead><tr><th>ID</th><th>Date</th><th>Customer</th><th>Amount</th></tr></thead><tbody>{% for sale in recent_sales %}<tr><td>#{{ sale.sale_id }}</td><td>{{ sale.sale_date[:16] }}</td><td>{{ sale.customer or 'Walk-in' }}</td><td>₹{{ "%.2f"|format(sale.total_amount) }}</td></tr>{% endfor %}</tbody></table></div></div></div>
+</div>
+{% endblock %}

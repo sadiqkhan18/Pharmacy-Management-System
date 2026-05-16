@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}Reports{% endblock %}
+{% block page_title %}Analytics{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6"><div class="card"><div class="card-header bg-success text-white">Top Selling Medicines</div><div class="card-body"><table class="table">{% for m in top_medicines %}<tr><td>{{ loop.index }}.攀QC{{ m.name }}攀QC{{ m.sold }} units</td></tr>{% endfor %}</table></div></div></div>
+    <div class="col-md-6"><div class="card"><div class="card-header bg-danger text-white">Expiring Batches (30 days)</div><div class="card-body"><table class="table">{% for b in expiring_batches %}<tr><td>{{ b.medicine_name }}攀QC{{ b.batch_number }}攀QC{{ b.expiry_date }}攀QC{{ b.quantity }} left</td></tr>{% endfor %}</table></div></div></div>
+</div>
+{% endblock %}

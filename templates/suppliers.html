@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block title %}Suppliers{% endblock %}
+{% block page_title %}Supplier Management{% endblock %}
+{% block content %}
+<button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fas fa-plus"></i> Add Supplier</button>
+<div class="card"><div class="card-body p-0"><table class="table"><thead><tr><th>ID</th><th>Company</th><th>Contact</th><th>Phone</th><th>Email</th></tr></thead><tbody>{% for s in suppliers %}<tr><td>{{ s.supplier_id }}</td><td><strong>{{ s.company_name }}</strong></td><td>{{ s.contact_person or '-' }}</td><td>{{ s.phone }}</td><td>{{ s.email or '-' }}</td></tr>{% endfor %}</tbody></table></div></div>
+<div class="modal fade" id="addModal"><div class="modal-dialog"><div class="modal-content"><form method="POST" action="{{ url_for('add_supplier') }}"><div class="modal-header bg-primary text-white"><h5>Add Supplier</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="mb-2"><label>Company Name *</label><input type="text" name="company_name" class="form-control" required></div><div class="mb-2"><label>Contact Person</label><input type="text" name="contact_person" class="form-control"></div><div class="mb-2"><label>Phone *</label><input type="text" name="phone" class="form-control" required></div><div class="mb-2"><label>Email</label><input type="email" name="email" class="form-control"></div></div><div class="modal-footer"><button type="submit" class="btn btn-primary">Save</button></div></form></div></div></div>
+{% endblock %}

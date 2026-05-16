@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}Alerts{% endblock %}
+{% block page_title %}Stock Alerts{% endblock %}
+{% block content %}
+<div class="card"><div class="card-header bg-warning">Active Alerts</div><div class="card-body">
+    {% for alert in alerts %}
+    <div class="alert alert-danger"><strong>{{ alert.alert_type }}</strong><br>{{ alert.message }}<br><small>Medicine: {{ alert.medicine_name }}</small><br><a href="{{ url_for('resolve_alert', alert_id=alert.alert_id) }}" class="btn btn-sm btn-success mt-2">Resolve</a></div>
+    {% else %}<p class="text-muted">No active alerts</p>{% endfor %}
+</div></div>
+{% endblock %}
